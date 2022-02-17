@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+
+:Administration: as admin
+
+
+package GestionEtudiant{
+    (Ajouter un nouvel étudiant) as addNewStud
+    (Lister par ordre alphabétique) as listAlpha
+    (Liste par promotion) as listPromo
+    (Modifier étudiant) as modifyStud
+    (Supprimer un étudiant) as deleteStud 
+}
+   
+
+
+'Relation entre admin et les fonctionnalitées de gestion des étudiants
+admin --> addNewStud
+admin --> listAlpha
+admin --> listPromo
+admin --> modifyStud
+admin --> deleteStud
+
+@enduml

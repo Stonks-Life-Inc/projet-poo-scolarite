@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+
+:Administration: as admin
+
+package GestionNotes{
+    (Créer un examen) as addExam
+    (Supprimer un examen) as deleteExam
+    (Ajouter la note pour un étudiant) as addNoteForStud
+    (Modifier la note d'un étudiant) as modifyNoteOfStud
+    (Supprimer la note d'un étdudiant) as deleteNoteOfStud
+    (Afficher les informations d'un examen) as displayExamInfo
+    (Afficher les informations d'un étduaitn) as displayStudInfo
+    ()
+}
+
+'Relation entre admin et les fonctionnalitées de gestion des examens (inscriptions)
+admin --> addExam
+admin --> deleteExam
+admin --> addNoteForStud
+admin --> modifyNoteOfStud
+admin --> deleteNoteOfStud
+
+@enduml

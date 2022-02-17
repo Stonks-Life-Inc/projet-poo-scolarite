@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+
+:Administration: as admin
+
+package GestionInscriptions{
+    (Ajouter un étudiant à un cours) as addStudInCours
+    (Supprimer une inscription) as deleteInscription
+    (Lister les étudiants d'un cours) as listStudOfCours
+    (Lister les cours d'un étudiant) as listCoursOfStud 
+}
+
+'Relation entre admin et les fonctionnalitées de gestion des examens (inscriptions)
+admin --> addStudInCours
+admin --> deleteInscription
+admin --> listStudOfCours
+admin --> listCoursOfStud
+
+@enduml

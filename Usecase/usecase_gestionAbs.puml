@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+
+:Administration: as admin
+
+package GestionAbsences{
+    (Ajouter une absence) as addAbs
+    (Modifier une absence) as modifyAbs
+    (Supprimer une absence) as deleteAbs
+    (Lister les absences dans un cours) as listAbsOfCours
+    (Lister absences d'un étudiant) as listAbsOfStud
+}
+
+'Relation entre admin et les fonctionnalitées de gestion des examens (inscriptions)
+admin --> addAbs
+admin --> modifyAbs
+admin --> deleteAbs
+admin --> listAbsOfCours
+admin --> listAbsOfStud
+
+@enduml

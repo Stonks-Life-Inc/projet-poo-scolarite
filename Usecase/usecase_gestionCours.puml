@@ -1,0 +1,20 @@
+@startuml
+left to right direction
+
+:Administration: as admin
+
+
+package GestionCours{
+    (Ajouter un nouveau cours) as addNewCours
+    (Lister les cours) as listCours
+    (Modifier un cours) as modifyCours
+    (Supprimer un cours) as deleteCours
+}
+
+'Relation entre admin et les fonctionnalitées de gestion des cours
+admin --> addNewCours
+admin --> listCours
+admin --> modifyCours
+admin --> deleteCours
+
+@enduml
