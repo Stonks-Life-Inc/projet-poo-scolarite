@@ -1,0 +1,44 @@
+@startuml
+
+'Abstract classes
+abstract Gestion{
+    'Attributes
+    - int id
+
+    'Methods
+    + BufferReader ouvrirFichierCSV(String filePath)
+    + String lireFichierCSV(BufferReader currentBuffer)
+    + Gestion trierDonnees(String rawData)
+
+    + void listerObjects()
+
+    + Gestion[] ajouterObject(Gestion gestion)
+    + Gestion modifierObject(Gestion gestion)
+    + Gestion[] supprimerObject(Gestion gestion)
+}
+
+'"Global" classes 
+class Personne{
+    'Attributes
+    - String nom
+    - String prenom
+    - String mailPerso
+    - String mailUniv
+}
+
+'Classes de gestions
+class gestionEtudiant{
+    'Attributes
+    - int numéroEtudiant
+    - String numSS
+    - String lieu
+    - Date dn
+    - String promotion
+
+    'Methods
+    + 
+}
+
+
+
+@enduml
