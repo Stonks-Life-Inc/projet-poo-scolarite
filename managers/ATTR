@@ -1,0 +1,49 @@
+Etudiant:
+Un identifiant
+ Numéro d’étudiant
+ Numéro de sécurité sociale
+ Nom, prénom, lieu et date de naissance
+ Promotion
+ Mail personnel, mail universitaire
+
+---
+Cours:
+Un identifiant
+ Un nom
+ Un enseignant de référence
+
+---
+Enseignant:
+nom,
+prénom,
+mail universitaire
+
+---
+Abs:
+etudiant
+cours
+data
+motif
+
+---
+Examens:
+
+    Contrôle :
+        date,
+        durée,
+        coefficient
+         Contrôle final :
+        date,
+        durée,
+        coefficient,
+        il peut être rattrapé à
+        une autre date définie
+         Travail pratique :
+        date,
+        durée,
+        coefficient, identifiant du
+        « poste de travail »
+         Projet :
+        date,
+        durée,
+        coefficient, peut être réalisé à plusieurs
