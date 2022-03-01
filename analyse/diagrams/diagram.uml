@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="39.5" y="-34.5">com</node>
+    <node x="3230.5" y="-34.5">images</node>
+    <node x="3044.0" y="-34.5">netscape</node>
+    <node x="2882.5" y="-34.5">org</node>
+    <node x="2709.5" y="-34.5">analyse</node>
+    <node x="2419.5" y="-34.5">toolbarButtonGraphics</node>
+    <node x="2262.0" y="-34.5">sun</node>
+    <node x="2104.0" y="-34.5">jdk</node>
+    <node x="1900.5" y="-34.5">META-INF</node>
+    <node x="1662.0" y="-34.5">groovyjarjarasm</node>
+    <node x="1501.0" y="-34.5">java</node>
+    <node x="1331.0" y="-34.5">groovy</node>
+    <node x="1157.5" y="-34.5">javax</node>
+    <node x="914.5" y="-34.5">groovyjarjarpicocli</node>
+    <node x="636.0" y="-34.5">groovyjarjarcommonscli</node>
+    <node x="400.0" y="-34.5">groovyjarjarantlr</node>
+    <node x="201.5" y="-34.5">managers</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Compact" zoom="0.3369143539242017" showDependencies="false" x="1705.0" y="-20.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
