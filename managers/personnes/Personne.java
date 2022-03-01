@@ -1,26 +1,20 @@
 package managers.personnes;
 
+import managers.GestionGlobal;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
 
-public abstract class Personne {
-    private String nom;
+public abstract class Personne extends GestionGlobal {
     private String prénom;
     private String mailUni;
 
-    public Personne(String nom, String prénom, String mailUni) {
-        this.nom = nom;
+    public Personne(int id, String nom, FileManager fm, ArrayList<GestionGlobal> gestions, String prénom, String mailUni) {
+        super(id, nom, fm, gestions);
         this.prénom = prénom;
         this.mailUni = mailUni;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 
     public String getPrénom() {
@@ -42,7 +36,6 @@ public abstract class Personne {
     @Override
     public String toString() {
         return "Personne{" +
-                "nom='" + nom + '\'' +
                 ", prénom='" + prénom + '\'' +
                 ", mailUni='" + mailUni + '\'' +
                 '}';

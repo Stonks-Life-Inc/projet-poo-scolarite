@@ -46,4 +46,5 @@ Examens:
          Projet :
         date,
         durée,
-        coefficient, peut être réalisé à plusieurs
+        coefficient,
+        peut être réalisé à plusieurs

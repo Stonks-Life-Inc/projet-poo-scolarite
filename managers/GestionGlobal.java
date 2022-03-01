@@ -13,11 +13,17 @@ public abstract class GestionGlobal {
 
     private ArrayList<GestionGlobal> gestions = new ArrayList<>();
 
-
-
     //===============================================================
     // Methods
     //===============================================================
+
+
+    public GestionGlobal(int id, String nom, FileManager fm, ArrayList<GestionGlobal> gestions) {
+        this.id = id;
+        this.nom = nom;
+        this.fm = fm;
+        this.gestions = gestions;
+    }
 
     //Méthodes de gestion de notre liste (ajouter, supprimer, modifier)
     ArrayList<GestionGlobal> ajouterObject(GestionGlobal gestionGlobal){
