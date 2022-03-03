@@ -43,3 +43,14 @@ public abstract class GestionGlobal {
         return gestions;
     }
 }
+ArrayList<GestionGlobal> listerObject(GestionGlobal gestionGlobal){
+	for(int i = 0; i<= gestions.size; i++){
+		system.out.println(gestionGlobal);
+	 }
+}
+ArrayList<GestionGlobal> listerAlphabetObject(GestionGlobal gestionGlobal){
+	Array.sort(gestions);
+	for(int i = 0; i<= gestions.size; i++){
+		system.out.println(gestionGlobal);
+	 }
+}
