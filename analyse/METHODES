@@ -1,0 +1,60 @@
+Etudiant:
+Ajouter un nouvel étudiant
+ Lister les étudiants par ordre alphabétique
+ Lister les étudiants par promotion, puis par ordre
+alphabétique au sein d’une même promotion
+ Modifier un étudiant
+ Supprimer un étudiant
+
+---
+Cours:
+Ajouter un nouveau cours
+ Lister les cours
+ Modifier un cours
+ Supprimer un cours
+
+---
+Enseignant:
+nom,
+prénom,
+mail universitaire
+
+---
+Inscriptions:
+Ajouter un étudiant à un cours
+ Supprimer une inscription
+ Pour un cours, lister les étudiants inscrits
+ Pour un étudiant, lister les cours auxquels il est inscrit
+
+
+---
+Abs:
+Ajouter une absence
+ Modifier une absence
+ Supprimer une absence
+ Pour un cours :
+ lister chronologiquement les absences et donner leur nombre
+    Etudiant
+        Lister par cours :
+         Chronologiquement ses absences
+         Le nombre d’absences
+         Le nombre total d’absences
+---
+Examens:
+Créer un examen
+ Supprimer un examen
+ Ajouter la note d’un étudiant à un examen
+ Modifier la note d’un étudiant à un examen
+ Supprimer la note d’un étudiant à un examen
+
+
+---
+Notes:
+    Exam:
+        Les notes des étudiants
+         La moyenne des notes de cet examen
+    Etudiant:
+        Par cours auquel il est inscrit, et par ordre chronologique :
+         Ses notes
+         Sa moyenne
+         Sa moyenne générale (tous les cours ont le même coefficient
