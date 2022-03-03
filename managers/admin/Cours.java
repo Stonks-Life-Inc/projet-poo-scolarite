@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 public class Cours extends GestionGlobal {
     private Enseignant enseignantRef;
+    ArrayList<Etudiant> lesEtudiants = new ArrayList<Etudiant>();
+    ArrayList<Examen> lesExamens = new ArrayList<Examen>();
 
     public Cours(int id, String nom, FileManager fm, ArrayList<GestionGlobal> gestions, Enseignant enseignantRef) {
         super(id, nom, fm, gestions);
