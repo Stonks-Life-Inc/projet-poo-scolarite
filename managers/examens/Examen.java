@@ -2,11 +2,14 @@ package managers.examens;
 
 import java.time.Duration;
 import java.util.Date;
+import java.util.ArrayList;
 
 public abstract class Examen {
     private Date dateExam;
     private Duration duree;
     private Float coeff;
+    private Cours unCours;
+    ArrayList<Etudiant> etudiants = new ArrayList<Etudiant>();
 
     public Examen(Date dateExam, Duration duree, Float coeff) {
         this.dateExam = dateExam;
