@@ -49,4 +49,11 @@ public abstract class Examen {
                 ", coeff=" + coeff +
                 '}';
     }
+    public Float calculerMoyenne(ArrayList<Etudiant> lesPresents){
+        Float resultat = 0; 
+        for(int i = 0; i <= lesPresents.size; i++){
+            resultat = resultat + Cours.notes; //Ajouter notes dans les attributs (Soit dans Cours, soit dans Examen)
+        }
+        resultat = resultat/lesPresents.size;
+    }    
 }
