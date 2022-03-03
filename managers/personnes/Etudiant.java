@@ -10,7 +10,8 @@ public class Etudiant extends Personne{
     private Date ddn; //Date de naissance
     private String promo; //Promo
     private String mailPerso;
-    Arraylist<Cours>lesCours = new Arraylist<Cours>();
+    Arraylist<Cours> lesCours = new Arraylist<Cours>();
+    ArrayList<Examen> lesExamens =  new ArrayList<Examen>();
 
     public Etudiant(String nom, String prénom, String mailUni, String nss, String pob, Date ddn, String promo, String mailPerso) {
         super(nom, prénom, mailUni);
