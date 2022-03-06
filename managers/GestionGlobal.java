@@ -2,6 +2,7 @@ package managers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public abstract class GestionGlobal {
 
@@ -62,7 +63,7 @@ public abstract class GestionGlobal {
     }
 
     ArrayList<GestionGlobal> listerAlphabetObject(ArrayList<GestionGlobal> gestions) {
-        gestions = Collections.sort(gestions);
+        gestions.sort((Comparator<? super GestionGlobal>) gestions);
         for (int i = 0; i <= gestions.size(); i++) {
             System.out.println(gestions.get(i));
         }
