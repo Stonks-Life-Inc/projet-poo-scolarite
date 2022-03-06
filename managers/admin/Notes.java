@@ -29,4 +29,5 @@ public class Notes extends GestionGlobal {
                 "examen=" + examen +
                 '}';
     }
+
 }

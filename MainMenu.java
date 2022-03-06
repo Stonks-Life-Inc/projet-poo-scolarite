@@ -1,4 +1,4 @@
-//package utility;
+import utility.*;
 
 import java.util.Scanner;
 
