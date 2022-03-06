@@ -34,6 +34,8 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
         this.mailPerso = mailPerso;
     }
 
+    //@todo: test
+
     public String getNss() {
         return nss;
     }
