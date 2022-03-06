@@ -1,18 +1,20 @@
 package managers.personnes;
 
 import managers.GestionGlobal;
+import utility.IFileManager;
 
+import java.io.BufferedReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.stream.Stream;
 
 
 public abstract class Personne extends GestionGlobal {
     private String prénom;
     private String mailUni;
 
-    public Personne(int id, String nom, FileManager fm, ArrayList<GestionGlobal> gestions, String prénom, String mailUni) {
-        super(id, nom, fm, gestions);
+    public Personne(int id, String nom, ArrayList<GestionGlobal> gestions, String prénom, String mailUni) {
+        super(id, nom, gestions);
         this.prénom = prénom;
         this.mailUni = mailUni;
     }
@@ -40,4 +42,6 @@ public abstract class Personne extends GestionGlobal {
                 ", mailUni='" + mailUni + '\'' +
                 '}';
     }
+
+    //FileManager méthodes
 }

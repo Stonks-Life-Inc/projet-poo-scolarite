@@ -1,9 +1,23 @@
 package managers.personnes;
 
-import java.util.Date;
-import java.util.ArrayList;
+import managers.GestionGlobal;
+import utility.IFileManager;
 
-public class Etudiant extends Personne{
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.stream.Stream;
+
+public class Etudiant extends Personne implements IFileManager<Etudiant> {
 
     private String nss; //Numéro SS
     private String pob; //Place of birth
@@ -71,5 +85,68 @@ public class Etudiant extends Personne{
                 ", promo='" + promo + '\'' +
                 ", mailPerso='" + mailPerso + '\'' +
                 '}';
+    }
+
+    //File Manager method
+
+    @Override
+    public ArrayList<Etudiant> lireFichier(String filename) {
+        ArrayList<Etudiant> etudiants = new ArrayList<>();
+        Path pathToFile = Paths.get(filename);
+        String[] attr;
+        Etudiant etudiant;
+        String line;
+
+        //We init a new BufferedReader in this try catch clause.
+        try(BufferedReader br = Files.newBufferedReader(pathToFile)) {
+
+            //We loop through each line (item) in our table
+            do{
+                //We read all lines at once
+                line = br.readLine();
+
+                //We split each value by , (because our CSV is split thanks to ,)
+                attr = line.split(",");
+
+                //We call our ceateClass method to reconstruct an object from this String[]
+                etudiant = createClass(attr);
+
+                //We add our newly created obj into our table
+                etudiants.add(etudiant);
+
+
+            } while(line!=null);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            return etudiants;
+        }
+    }
+
+    @Override
+    public void ecritureFichier(BufferedReader currentBuffer, ArrayList<Etudiant> gestions) {
+
+    }
+
+    @Override
+    public Etudiant createClass(String[] metadata) {
+        int id = Integer.parseInt(metadata[0]);
+        int numEtud = Integer.parseInt(metadata[1]);
+        int numSS = Integer.parseInt(metadata[2]);
+        String nom = metadata[3];
+        String prenom = metadata[4];
+        String ldn = metadata[5];
+        Date ddn = null;
+        try {
+            ddn = new SimpleDateFormat("dd/MM/yyy").parse(metadata[6]);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        String promo = metadata[7];
+        String mailPerso = metadata[8];
+        String mailUni = metadata[9];
+
+        return new Etudiant(id, numEtud, numSS, nom, prenom, ldn, ddn, promo, mailPerso, mailUni);
     }
 }

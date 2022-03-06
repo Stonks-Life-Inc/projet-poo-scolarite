@@ -1,16 +1,16 @@
 Etudiant:
 Un identifiant
- Numéro d’étudiant
- Numéro de sécurité sociale
- Nom, prénom, lieu et date de naissance
- Promotion
- Mail personnel, mail universitaire
+Numéro d’étudiant
+Numéro de sécurité sociale
+Nom, prénom, lieu et date de naissance
+Promotion
+Mail personnel, mail universitaire
 
 ---
 Cours:
 Un identifiant
- Un nom
- Un enseignant de référence
+Un nom
+Un enseignant de référence
 
 ---
 Enseignant:

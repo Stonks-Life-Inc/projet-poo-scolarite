@@ -1,27 +1,31 @@
 package managers;
 
-import utility.FileManager;
+import utility.IFileManager;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.stream.Stream;
 
 public abstract class GestionGlobal {
 
-    private int id;
-    private String nom;
+    private final int id;
+    private final String nom;
 
-    private FileManager fm;
-
-    private ArrayList<GestionGlobal> gestions = new ArrayList<>();
+    private ArrayList<GestionGlobal> gestions;
 
     //===============================================================
     // Methods
     //===============================================================
 
 
-    public GestionGlobal(int id, String nom, FileManager fm, ArrayList<GestionGlobal> gestions) {
+    public GestionGlobal(int id, String nom, ArrayList<GestionGlobal> gestions) {
         this.id = id;
         this.nom = nom;
-        this.fm = fm;
         this.gestions = gestions;
     }
 
@@ -40,6 +44,20 @@ public abstract class GestionGlobal {
     ArrayList<GestionGlobal> supprimerObject(GestionGlobal gestionGlobal){
         gestions.remove(gestionGlobal);
 
+        return gestions;
+    }
+
+    void listerObject(){
+        for(int i = 0; i<= gestions.size(); i++){
+            System.out.println(gestions.get(i));
+        }
+
+    }
+    ArrayList<GestionGlobal> listerAlphabetObject(){
+        gestions = Collections.sort(gestions);
+        for(int i = 0; i<= gestions.size(); i++){
+            System.out.println(gestions.get(i));
+        }
         return gestions;
     }
 }
