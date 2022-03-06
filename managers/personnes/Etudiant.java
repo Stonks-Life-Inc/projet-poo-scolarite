@@ -1,11 +1,10 @@
 package managers.personnes;
 
-import managers.GestionGlobal;
+import managers.admin.Cours;
+import managers.examens.Examen;
 import utility.IFileManager;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,19 +13,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.stream.Stream;
 
 public class Etudiant extends Personne implements IFileManager<Etudiant> {
 
+    ArrayList<Cours> lesCours = new ArrayList<Cours>();
+    ArrayList<Examen> lesExamens = new ArrayList<Examen>();
     private String nss; //Numéro SS
     private String pob; //Place of birth
     private Date ddn; //Date de naissance
     private String promo; //Promo
     private String mailPerso;
-    Arraylist<Cours> lesCours = new Arraylist<Cours>();
-    ArrayList<Examen> lesExamens =  new ArrayList<Examen>();
 
+    //TODO: "reconstruire" les arguments du constructeur pour les mettre dans le bon ordre et qu'ils soit tous présent!
     public Etudiant(String nom, String prénom, String mailUni, String nss, String pob, Date ddn, String promo, String mailPerso) {
         super(nom, prénom, mailUni);
         this.nss = nss;
@@ -98,10 +96,10 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
         String line;
 
         //We init a new BufferedReader in this try catch clause.
-        try(BufferedReader br = Files.newBufferedReader(pathToFile)) {
+        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
 
             //We loop through each line (item) in our table
-            do{
+            do {
                 //We read all lines at once
                 line = br.readLine();
 
@@ -115,11 +113,11 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
                 etudiants.add(etudiant);
 
 
-            } while(line!=null);
+            } while (line != null);
 
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             return etudiants;
         }
     }

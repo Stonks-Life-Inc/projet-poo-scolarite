@@ -3,7 +3,7 @@ package managers.examens;
 import java.time.Duration;
 import java.util.Date;
 
-public class TravailPratique extends Examen{
+public class TravailPratique extends Examen {
     private int idPostTravail;
 
     public TravailPratique(Date dateExam, Duration duree, Float coeff, int idPostTravail) {
