@@ -7,7 +7,9 @@ public class Enseignant extends Personne {
 
     //Constructeur contenant le constructeur de la classe parent
 
-
+    //===============================================================
+    // Methods
+    //===============================================================
     public Enseignant(int id, String nom, String prénom, String mailUni) {
         super(id, nom, prénom, mailUni);
     }

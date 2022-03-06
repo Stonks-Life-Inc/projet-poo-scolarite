@@ -6,15 +6,21 @@ import java.util.ArrayList;
 
 
 public abstract class Personne extends GestionGlobal {
+//region déclaration des attributs
     private String prénom;
     private String mailUni;
+//endregion
 
+    //===============================================================
+    // Methods
+    //===============================================================
     public Personne(int id, String nom, String prénom, String mailUni) {
         super(id, nom);
         this.prénom = prénom;
         this.mailUni = mailUni;
     }
 
+//region Getters&Setters
     public String getPrénom() {
         return prénom;
     }
@@ -30,6 +36,7 @@ public abstract class Personne extends GestionGlobal {
     public void setMailUni(String mailUni) {
         this.mailUni = mailUni;
     }
+//endregion
 
     @Override
     public String toString() {
@@ -39,12 +46,10 @@ public abstract class Personne extends GestionGlobal {
                 '}';
     }
 
+    //Methodes tableau (ajouter, supprimer, modifier)
+
+
     //FileManager méthodes
-
-    public Personne(int id, String nom) {
-        super(id, nom);
-    }
-
     @Override
     public int getId() {
         return super.getId();
@@ -53,15 +58,5 @@ public abstract class Personne extends GestionGlobal {
     @Override
     public String getNom() {
         return super.getNom();
-    }
-
-    @Override
-    public ArrayList<GestionGlobal> getGestions() {
-        return super.getGestions();
-    }
-
-    @Override
-    public void setGestions(ArrayList<GestionGlobal> gestions) {
-        super.setGestions(gestions);
     }
 }

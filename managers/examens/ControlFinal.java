@@ -6,11 +6,15 @@ import java.util.Date;
 public class ControlFinal extends Examen {
     private Date dateRattrapage;
 
+    //===============================================================
+    // Methods
+    //===============================================================
     public ControlFinal(Date dateExam, Duration duree, Float coeff, Date dateRattrapage) {
         super(dateExam, duree, coeff);
         this.dateRattrapage = dateRattrapage;
     }
 
+//region Getters&Setters
     public Date getDateRattrapage() {
         return dateRattrapage;
     }
@@ -18,6 +22,7 @@ public class ControlFinal extends Examen {
     public void setDateRattrapage(Date dateRattrapage) {
         this.dateRattrapage = dateRattrapage;
     }
+//endregion
 
     @Override
     public String toString() {

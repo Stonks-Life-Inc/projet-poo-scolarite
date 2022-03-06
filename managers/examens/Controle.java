@@ -8,7 +8,9 @@ public class Controle extends Examen {
     //Si nous avons besoin d'ajouter de nouveaux attributs ou action pour cette partie métier, nous pouvons just ajouter
     //Les informations ici
 
-
+    //===============================================================
+    // Methods
+    //===============================================================
     public Controle(Date dateExam, Duration duree, Float coeff) {
         super(dateExam, duree, coeff);
     }

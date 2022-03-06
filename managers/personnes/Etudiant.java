@@ -5,7 +5,11 @@ import managers.examens.Examen;
 import utility.IFileManager;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.lang.reflect.Modifier;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,8 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Etudiant extends Personne implements IFileManager<Etudiant> {
-
+public class Etudiant extends Personne implements IFileManager<Etudiant>, Serializable {
+//region déclaration des attributs
     ArrayList<Cours> lesCours = new ArrayList<Cours>();
     ArrayList<Examen> lesExamens = new ArrayList<Examen>();
     private String nss; //Numéro SS
@@ -24,7 +28,11 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
     private int ne; //Numéro étudiant
     private String promo; //Promo
     private String mailPerso;
+//endregion
 
+    //===============================================================
+    // Methods
+    //===============================================================
     public Etudiant(int id, String nom, String prénom, String mailUni, String nss, String ldn, Date ddn, int ne, String promo, String mailPerso) {
         super(id, nom, prénom, mailUni);
         this.nss = nss;
@@ -35,6 +43,7 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
         this.mailPerso = mailPerso;
     }
 
+//region Getters&Setters
     public String getNss() {
         return nss;
     }
@@ -74,6 +83,7 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
     public void setMailPerso(String mailPerso) {
         this.mailPerso = mailPerso;
     }
+//endregion
 
     @Override
     public String toString() {
@@ -85,6 +95,8 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
                 ", mailPerso='" + mailPerso + '\'' +
                 '}';
     }
+
+
 
     //File Manager method
 
@@ -124,8 +136,43 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
     }
 
     @Override
-    public void ecritureFichier(BufferedReader currentBuffer, ArrayList<Etudiant> gestions) {
+    public void ecritureFichier(String filename,) {
+        ArrayList<Etudiant> etudiants = new ArrayList<>();
+        Path pathToFile = Paths.get(filename);
+        String[] attr;
+        Etudiant etudiant;
+        String line;
 
+        //We init a new BufferedReader in this try catch clause.
+        try (BufferedWriter wr = Files.newBufferedWriter(pathToFile)) {
+
+            for (:
+                 ) {
+
+            }
+
+            /*//We loop through each line (item) in our table
+            do {
+                //We read all lines at once
+                line = br.readLine();
+
+                //We split each value by , (because our CSV is split thanks to ,)
+                attr = line.split(",");
+
+                //We call our ceateClass method to reconstruct an object from this String[]
+                etudiant = createClass(attr);
+
+                //We add our newly created obj into our table
+                etudiants.add(etudiant);
+
+
+            } while (line != null);*/
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            return etudiants;
+        }
     }
 
     @Override

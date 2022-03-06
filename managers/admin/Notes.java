@@ -9,11 +9,15 @@ public class Notes extends GestionGlobal {
 
     private Examen examen;
 
+    //===============================================================
+    // Methods
+    //===============================================================
     public Notes(int id, String nom, Examen examen) {
         super(id, nom);
         this.examen = examen;
     }
 
+//region Getters&Setters
     public Examen getExamen() {
         return examen;
     }
@@ -21,6 +25,7 @@ public class Notes extends GestionGlobal {
     public void setExamen(Examen examen) {
         this.examen = examen;
     }
+//endregion
 
     public String $toString() {
         return "Notes{" +

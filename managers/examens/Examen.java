@@ -8,18 +8,24 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public abstract class Examen {
+//region déclaration des attributs
     ArrayList<Etudiant> etudiants = new ArrayList<Etudiant>();
     private Date dateExam;
     private Duration duree;
     private Float coeff;
     private Cours unCours;
+//endregion
 
+    //===============================================================
+    // Methods
+    //===============================================================
     public Examen(Date dateExam, Duration duree, Float coeff) {
         this.dateExam = dateExam;
         this.duree = duree;
         this.coeff = coeff;
     }
 
+//region Getters&Setters
     public Date getDateExam() {
         return dateExam;
     }
@@ -43,6 +49,7 @@ public abstract class Examen {
     public void setCoeff(Float coeff) {
         this.coeff = coeff;
     }
+//endregion
 
     @Override
     public String toString() {

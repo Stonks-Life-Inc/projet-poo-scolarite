@@ -6,11 +6,15 @@ import java.util.Date;
 public class TravailPratique extends Examen {
     private int idPostTravail;
 
+    //===============================================================
+    // Methods
+    //===============================================================
     public TravailPratique(Date dateExam, Duration duree, Float coeff, int idPostTravail) {
         super(dateExam, duree, coeff);
         this.idPostTravail = idPostTravail;
     }
 
+//region Getters&Setters
     public int getIdPostTravail() {
         return idPostTravail;
     }
@@ -18,6 +22,7 @@ public class TravailPratique extends Examen {
     public void setIdPostTravail(int idPostTravail) {
         this.idPostTravail = idPostTravail;
     }
+//endregion
 
     @Override
     public String toString() {
