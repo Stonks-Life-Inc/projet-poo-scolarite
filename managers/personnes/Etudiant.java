@@ -19,22 +19,21 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
     ArrayList<Cours> lesCours = new ArrayList<Cours>();
     ArrayList<Examen> lesExamens = new ArrayList<Examen>();
     private String nss; //Numéro SS
-    private String pob; //Place of birth
+    private String ldn; //Place of birth
     private Date ddn; //Date de naissance
+    private int ne; //Numéro étudiant
     private String promo; //Promo
     private String mailPerso;
 
-    //TODO: "reconstruire" les arguments du constructeur pour les mettre dans le bon ordre et qu'ils soit tous présent!
-    public Etudiant(String nom, String prénom, String mailUni, String nss, String pob, Date ddn, String promo, String mailPerso) {
-        super(nom, prénom, mailUni);
+    public Etudiant(int id, String nom, String prénom, String mailUni, String nss, String ldn, Date ddn, int ne, String promo, String mailPerso) {
+        super(id, nom, prénom, mailUni);
         this.nss = nss;
-        this.pob = pob;
+        this.ldn = ldn;
         this.ddn = ddn;
+        this.ne = ne;
         this.promo = promo;
         this.mailPerso = mailPerso;
     }
-
-    //@todo: test
 
     public String getNss() {
         return nss;
@@ -44,12 +43,12 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
         this.nss = nss;
     }
 
-    public String getPob() {
-        return pob;
+    public String getLdn() {
+        return ldn;
     }
 
-    public void setPob(String pob) {
-        this.pob = pob;
+    public void setLdn(String ldn) {
+        this.ldn = ldn;
     }
 
     public Date getDdn() {
@@ -80,7 +79,7 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
     public String toString() {
         return super.toString() +
                 "nss='" + nss + '\'' +
-                ", pob='" + pob + '\'' +
+                ", pob='" + ldn + '\'' +
                 ", ddn=" + ddn +
                 ", promo='" + promo + '\'' +
                 ", mailPerso='" + mailPerso + '\'' +
@@ -133,7 +132,7 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
     public Etudiant createClass(String[] metadata) {
         int id = Integer.parseInt(metadata[0]);
         int numEtud = Integer.parseInt(metadata[1]);
-        int numSS = Integer.parseInt(metadata[2]);
+        String numSS = metadata[2];
         String nom = metadata[3];
         String prenom = metadata[4];
         String ldn = metadata[5];
@@ -147,6 +146,6 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
         String mailPerso = metadata[8];
         String mailUni = metadata[9];
 
-        return new Etudiant(id, numEtud, numSS, nom, prenom, ldn, ddn, promo, mailPerso, mailUni);
+        return new Etudiant(id, nom, prenom, mailUni, numSS, ldn, ddn, numEtud, promo, mailPerso);
     }
 }

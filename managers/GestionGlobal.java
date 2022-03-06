@@ -5,19 +5,32 @@ import java.util.Collections;
 
 public abstract class GestionGlobal {
 
-    private final int id;
-    private final String nom;
+    protected final int id;
+    protected final String nom;
 
-    private ArrayList<GestionGlobal> gestions;
+    private ArrayList<GestionGlobal> gestions = new ArrayList<>();
 
     //===============================================================
     // Methods
     //===============================================================
-
-
-    public GestionGlobal(int id, String nom, ArrayList<GestionGlobal> gestions) {
+    public GestionGlobal(int id, String nom) {
         this.id = id;
         this.nom = nom;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public ArrayList<GestionGlobal> getGestions() {
+        return gestions;
+    }
+
+    public void setGestions(ArrayList<GestionGlobal> gestions) {
         this.gestions = gestions;
     }
 
@@ -48,7 +61,7 @@ public abstract class GestionGlobal {
 
     }
 
-    ArrayList<GestionGlobal> listerAlphabetObject() {
+    ArrayList<GestionGlobal> listerAlphabetObject(ArrayList<GestionGlobal> gestions) {
         gestions = Collections.sort(gestions);
         for (int i = 0; i <= gestions.size(); i++) {
             System.out.println(gestions.get(i));

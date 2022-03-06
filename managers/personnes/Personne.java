@@ -7,9 +7,8 @@ public abstract class Personne extends GestionGlobal {
     private String prénom;
     private String mailUni;
 
-
-    public Personne(String nom, String prénom, String mailUni) {
-        super(id, nom, gestions);
+    public Personne(int id, String nom, String prénom, String mailUni) {
+        super(id, nom);
         this.prénom = prénom;
         this.mailUni = mailUni;
     }
