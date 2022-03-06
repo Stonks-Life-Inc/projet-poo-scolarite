@@ -6,8 +6,10 @@ public class Enseignant extends Personne {
     //Nous aurons juste à rajouter nos différents attributs et méthodes ici.
 
     //Constructeur contenant le constructeur de la classe parent
-    public Enseignant(String nom, String prénom, String mailUni) {
-        super(nom, prénom, mailUni);
+
+
+    public Enseignant(int id, String nom, String prénom, String mailUni) {
+        super(id, nom, prénom, mailUni);
     }
 
     @Override

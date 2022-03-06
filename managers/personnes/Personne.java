@@ -2,6 +2,8 @@ package managers.personnes;
 
 import managers.GestionGlobal;
 
+import java.util.ArrayList;
+
 
 public abstract class Personne extends GestionGlobal {
     private String prénom;
@@ -38,4 +40,28 @@ public abstract class Personne extends GestionGlobal {
     }
 
     //FileManager méthodes
+
+    public Personne(int id, String nom) {
+        super(id, nom);
+    }
+
+    @Override
+    public int getId() {
+        return super.getId();
+    }
+
+    @Override
+    public String getNom() {
+        return super.getNom();
+    }
+
+    @Override
+    public ArrayList<GestionGlobal> getGestions() {
+        return super.getGestions();
+    }
+
+    @Override
+    public void setGestions(ArrayList<GestionGlobal> gestions) {
+        super.setGestions(gestions);
+    }
 }
