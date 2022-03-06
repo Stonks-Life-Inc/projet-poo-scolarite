@@ -2,17 +2,17 @@ package utility;
 
 import java.io.BufferedReader;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
-public interface IFileManager extends Serializable {
-    //Attributes
-    BufferedReader Ibr = null;
-    String IfilePath = null;
-    Stream<String> IfileContent = null;
+public interface IFileManager<Class> extends Serializable {
 
-    //Méthodes
-    BufferedReader ouvrirFichierCSV(String filePath, int typeOuverture);
-    Stream<String> lireFichier(BufferedReader currentBuffer);
+    //Lecture
+    ArrayList<Class> lireFichier(String filename);
+    //Ecriture
     void ecritureFichier(BufferedReader currentBuffer, ArrayList<Class> gestions);
+
+    //Reconstruction de notre classe
+    Class createClass(String[] metadata) throws ParseException;
 }

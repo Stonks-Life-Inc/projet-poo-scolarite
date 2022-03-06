@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class Cours extends GestionGlobal {
     private Enseignant enseignantRef;
 
-    public Cours(int id, String nom, FileManager fm, ArrayList<GestionGlobal> gestions, Enseignant enseignantRef) {
-        super(id, nom, fm, gestions);
+    public Cours(int id, String nom, ArrayList<GestionGlobal> gestions, Enseignant enseignantRef) {
+        super(id, nom, gestions);
         this.enseignantRef = enseignantRef;
     }
 
