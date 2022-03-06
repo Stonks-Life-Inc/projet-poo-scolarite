@@ -14,16 +14,6 @@ public class TravailPratique extends Examen {
         this.idPostTravail = idPostTravail;
     }
 
-//region Getters&Setters
-    public int getIdPostTravail() {
-        return idPostTravail;
-    }
-
-    public void setIdPostTravail(int idPostTravail) {
-        this.idPostTravail = idPostTravail;
-    }
-//endregion
-
     @Override
     public String toString() {
         return "TravailPratique{" + super.toString() +

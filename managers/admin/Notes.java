@@ -3,8 +3,6 @@ package managers.admin;
 import managers.GestionGlobal;
 import managers.examens.Examen;
 
-import java.util.ArrayList;
-
 public class Notes extends GestionGlobal {
 
     private Examen examen;
@@ -16,16 +14,6 @@ public class Notes extends GestionGlobal {
         super(id, nom);
         this.examen = examen;
     }
-
-//region Getters&Setters
-    public Examen getExamen() {
-        return examen;
-    }
-
-    public void setExamen(Examen examen) {
-        this.examen = examen;
-    }
-//endregion
 
     public String $toString() {
         return "Notes{" +

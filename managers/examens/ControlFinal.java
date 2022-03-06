@@ -14,16 +14,6 @@ public class ControlFinal extends Examen {
         this.dateRattrapage = dateRattrapage;
     }
 
-//region Getters&Setters
-    public Date getDateRattrapage() {
-        return dateRattrapage;
-    }
-
-    public void setDateRattrapage(Date dateRattrapage) {
-        this.dateRattrapage = dateRattrapage;
-    }
-//endregion
-
     @Override
     public String toString() {
         return "ControlFinal{" + super.toString() +

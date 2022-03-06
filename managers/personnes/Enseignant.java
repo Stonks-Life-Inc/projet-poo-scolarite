@@ -18,4 +18,6 @@ public class Enseignant extends Personne {
     public String toString() {
         return super.toString();
     }
+
+
 }
