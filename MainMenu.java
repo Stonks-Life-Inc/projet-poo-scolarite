@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 public class MainMenu {
     private static Scanner menuChoiceScanner = new Scanner(System.in);
-
-
     public static void main(String[] args) {
         int choice;
         int choice2;
