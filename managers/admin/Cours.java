@@ -12,8 +12,8 @@ public class Cours extends GestionGlobal {
     ArrayList<Examen> lesExamens = new ArrayList<Examen>();
     private Enseignant enseignantRef;
 
-    public Cours(int id, String nom, ArrayList<GestionGlobal> gestions, Enseignant enseignantRef) {
-        super(id, nom, gestions);
+    public Cours(int id, String nom, Enseignant enseignantRef) {
+        super(id, nom);
         this.enseignantRef = enseignantRef;
     }
 
