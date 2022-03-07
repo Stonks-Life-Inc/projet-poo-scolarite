@@ -7,18 +7,11 @@ import managers.examens.TravailPratique;
 import managers.personnes.Enseignant;
 import managers.personnes.Etudiant;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 
-public class TableManager implements ITableManager<TableManager> {
+public class TableManager implements ITableManager {
 
     ArrayList<Etudiant> etudiants = new ArrayList<>();
     ArrayList<Enseignant> enseignants = new ArrayList<>();
@@ -30,65 +23,108 @@ public class TableManager implements ITableManager<TableManager> {
 
 //region gestion du tableau Etudiant
 
+//    @Override
+//    public void ecritureFichier(String filePath, ArrayList etudiants) {
+//
+//    }
+//
+//    @Override
+//    public ArrayList<Etudiant> lectureFichier(String filePath) {
+//
+//        Path pathToFile = Paths.get(filePath);
+//        String[] attr;
+//
+//        Etudiant etudiant;
+//
+//
+//        String line;
+//
+//        //We init a new BufferedReader in this try catch clause.
+//        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
+//
+//            //We loop through each line (item) in our table
+//            do {
+//                //We read all lines at once
+//                line = br.readLine();
+//
+//                //We split each value by , (because our CSV is split thanks to ,)
+//                attr = line.split(",");
+//
+//                //We call our ceateClass method to reconstruct an object from this String[]
+//                etudiant = createClass(attr);
+//
+//                //We add our newly created obj into our table
+//                etudiants.add(etudiant);
+//
+//
+//            } while (line != null);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            return etudiants;
+//        }
+//    }
+
     @Override
-    public void ecritureFichier(String filePath, ArrayList etudiants) {
+    public void writeObject(ArrayList tab, String filename) throws IOException {
+        // Serialization
+        try
+        {
+            //Saving of object in a file
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
 
-    }
+            // Method for serialization of object
+            // Method for serialization of object
+            for (Object obj:
+                    tab) {
+                out.writeObject(obj);
+            }
 
-    @Override
-    public ArrayList<Etudiant> lectureFichier(String filePath) {
-        ArrayList<Etudiant> etudiants = new ArrayList<>();
-        Path pathToFile = Paths.get(filePath);
-        String[] attr;
-        Etudiant etudiant;
-        String line;
+            out.close();
+            file.close();
 
-        //We init a new BufferedReader in this try catch clause.
-        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
+            System.out.println("Object has been serialized");
 
-            //We loop through each line (item) in our table
-            do {
-                //We read all lines at once
-                line = br.readLine();
+        }
 
-                //We split each value by , (because our CSV is split thanks to ,)
-                attr = line.split(",");
-
-                //We call our ceateClass method to reconstruct an object from this String[]
-                etudiant = createClass(attr);
-
-                //We add our newly created obj into our table
-                etudiants.add(etudiant);
-
-
-            } while (line != null);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            return etudiants;
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
         }
     }
 
     @Override
-    public Etudiant createClass(String[] metadata) {
-        int id = Integer.parseInt(metadata[0]);
-        int numEtud = Integer.parseInt(metadata[1]);
-        String numSS = metadata[2];
-        String nom = metadata[3];
-        String prenom = metadata[4];
-        String ldn = metadata[5];
-        Date ddn = null;
-        try {
-            ddn = new SimpleDateFormat("dd/MM/yyy").parse(metadata[6]);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String promo = metadata[7];
-        String mailPerso = metadata[8];
-        String mailUni = metadata[9];
+    public ArrayList<Object> readObject(String filename) throws IOException, ClassNotFoundException {
+        // Deserialization
+        try
+        {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
 
-        return new Etudiant(id, nom, prenom, mailUni, numSS, ldn, ddn, numEtud, promo, mailPerso);
+            ArrayList<Object> tabObj = new ArrayList<>();
+
+            // Method for deserialization of object
+            tabObj.add((Object) in.readObject());
+
+            in.close();
+            file.close();
+
+            return tabObj;
+        }
+
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+        return null;
     }
 
     @Override
@@ -108,110 +144,23 @@ public class TableManager implements ITableManager<TableManager> {
     }
 
     @Override
-    public ArrayList<Etudiant> ajouter(Etudiant etudiant, ArrayList<Etudiant> etudiants) {
-        etudiants.add(etudiant);
-        return etudiants;
+    public ArrayList<Object> ajouter(Object obj, ArrayList<Object> tabObj) {
+        tabObj.add(obj);
+        return tabObj;
     }
 
     @Override
-    public ArrayList<Etudiant> modifier(Etudiant etudiant, ArrayList<Etudiant> etudiants) {
-        etudiants.remove(etudiant);
-        etudiants.add(etudiant);
+    public ArrayList<Object> modifier(Object obj, ArrayList<Object> tabObj) {
+        tabObj.remove(obj);
+        tabObj.add(obj);
 
-        return etudiants;
+        return tabObj;
     }
 
     @Override
-    public ArrayList<Etudiant> supprimer(Etudiant etudiant, ArrayList<Etudiant> etudiants) {
-        etudiants.remove(etudiant);
-        return etudiants;
-    }
-
-//endregion
-
-//region gestion du tableau Enseignant
-
-    @Override
-    public void ecritureFichier(String filePath, ArrayList enseignants) {
-
-    }
-
-    @Override
-    public ArrayList<Enseignant> lectureFichier(String filePath) {
-        ArrayList<Enseignant> enseignants = new ArrayList<>();
-        Path pathToFile = Paths.get(filePath);
-        String[] attr;
-        Enseignant Enseignant;
-        String line;
-
-        //We init a new BufferedReader in this try catch clause.
-        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
-
-            //We loop through each line (item) in our table
-            do {
-                //We read all lines at once
-                line = br.readLine();
-
-                //We split each value by , (because our CSV is split thanks to ,)
-                attr = line.split(",");
-
-                //We call our ceateClass method to reconstruct an object from this String[]
-                Enseignant = createClass(attr);
-
-                //We add our newly created obj into our table
-                enseignants.add(Enseignant);
-
-
-            } while (line != null);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            return enseignants;
-        }
-    }
-
-    @Override
-    public Enseignant createClass(String[] metadata) {
-
-
-        return new Enseignant();
-    }
-
-    @Override
-    public void listerObject(ArrayList enseignants) {
-        for (int i = 0; i <= enseignants.size(); i++) {
-            System.out.println(enseignants.get(i));
-        }
-    }
-
-    @Override
-    public ArrayList<Enseignant> listerAlphabetObject(ArrayList enseignants) {
-        enseignants.sort((Comparator) enseignants);
-        for (int i = 0; i <= enseignants.size(); i++) {
-            System.out.println(enseignants.get(i));
-        }
-        return enseignants;
-    }
-
-    @Override
-    public ArrayList<Enseignant> ajouter(Enseignant Enseignant, ArrayList<Enseignant> enseignants) {
-        enseignants.add(Enseignant);
-        return enseignants;
-    }
-
-    @Override
-    public ArrayList<Enseignant> modifier(Enseignant Enseignant, ArrayList<Enseignant> enseignants) {
-        enseignants.remove(Enseignant);
-        enseignants.add(Enseignant);
-
-        return enseignants;
-    }
-
-    @Override
-    public ArrayList<Enseignant> supprimer(Enseignant Enseignant, ArrayList<Enseignant> enseignants) {
-        enseignants.remove(Enseignant);
-        return enseignants;
+    public ArrayList<Object> supprimer(Object obj, ArrayList<Object> tabObj) {
+        tabObj.remove(obj);
+        return tabObj;
     }
 
 //endregion

@@ -1,22 +1,23 @@
 package utility;
 
-import managers.personnes.Etudiant;
-
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public interface ITableManager<Class> extends Serializable {
+//Cette interface permet de contrôller les tableaux d'objets plus facilement.
+//Elle permet : d'ajouter, modifier ou supprimer un objet.
+//Charger et enregistrer un tableau dans un fichier.
+//Trier et lister le tableau.
+public interface ITableManager extends Serializable {
 
 //region Ecriture & lecture dans un fichier
 
-    //Ecriture
-    void ecritureFichier(String filePath, ArrayList<Class> tableauxClass);
+    void writeObject(ArrayList tab, String filename)
+            throws IOException; //Method de la classe serialize
 
-    //Lecture
-    ArrayList<Etudiant> lectureFichier(String filePath);
-
-    //Reconstruction de notre classe
-    Class createClass(String[] metadata);
+    ArrayList<Object> readObject(String filename)
+            throws IOException,
+            ClassNotFoundException; //Method de la classe serialize
 
 //endregion
 
@@ -24,10 +25,10 @@ public interface ITableManager<Class> extends Serializable {
 //region Lister et triage
 
     //Lister tous les objets
-    void listerObject(ArrayList<Class> objTable);
+    void listerObject(ArrayList objTable);
 
     //Trier les objets alphabetiquement
-    ArrayList<Class> listerAlphabetObject(ArrayList<Class> objTable);
+    ArrayList listerAlphabetObject(ArrayList objTable);
 
 //endregion
 
@@ -35,13 +36,13 @@ public interface ITableManager<Class> extends Serializable {
 //region Modifier ajouter supprimer
 
     //Ajouter
-    Class ajouter(Class objClass, ArrayList<Class> tabClass);
+    ArrayList<Object> ajouter(Object objClass, ArrayList<Object> tabClass);
 
     //Modifier
-    Class modifier(Class objClass, ArrayList<Class> tabClass);
+    ArrayList<Object> modifier(Object objClass, ArrayList<Object> tabClass);
 
     //Supprimer
-    void supprimer(Class objClass, ArrayList<Class> tabClass);
+    ArrayList<Object> supprimer(Object objClass, ArrayList<Object> tabClass);
 
 //endregion
 }
