@@ -1,25 +1,27 @@
 package utility;
 
-import managers.examens.ControlFinal;
-import managers.examens.Controle;
-import managers.examens.Projet;
-import managers.examens.TravailPratique;
-import managers.personnes.Enseignant;
-import managers.personnes.Etudiant;
+import managers.examens.*;
+import managers.admin.*;
+import managers.personnes.*;
+
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class TableManager implements ITableManager {
 
     ArrayList<Object> etudiants = new ArrayList<Object>();
-    ArrayList<Enseignant> enseignants = new ArrayList<>();
+    ArrayList<Object> enseignants = new ArrayList<>();
 
     ArrayList<TravailPratique> tps = new ArrayList<>();
     ArrayList<Projet> projets = new ArrayList<>();
     ArrayList<ControlFinal> cfs = new ArrayList<>();
     ArrayList<Controle> controles = new ArrayList<>();
+    ArrayList<Object> absences = new ArrayList<>();
+    ArrayList<Object> cours = new ArrayList<>();
+    ArrayList<Object> notes = new ArrayList<>();
 
 //region gestion des tableaux
 
