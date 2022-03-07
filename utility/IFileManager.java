@@ -4,12 +4,12 @@ import java.io.BufferedReader;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public interface IFileManager<Class> extends Serializable {
 
     //Lecture
     ArrayList<Class> lireFichier(String filename);
+
     //Ecriture
     void ecritureFichier(BufferedReader currentBuffer, ArrayList<Class> gestions);
 

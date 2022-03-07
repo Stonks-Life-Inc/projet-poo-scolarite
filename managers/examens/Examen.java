@@ -1,15 +1,18 @@
 package managers.examens;
 
+import managers.admin.Cours;
+import managers.personnes.Etudiant;
+
 import java.time.Duration;
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Date;
 
 public abstract class Examen {
+    ArrayList<Etudiant> etudiants = new ArrayList<Etudiant>();
     private Date dateExam;
     private Duration duree;
     private Float coeff;
     private Cours unCours;
-    ArrayList<Etudiant> etudiants = new ArrayList<Etudiant>();
 
     public Examen(Date dateExam, Duration duree, Float coeff) {
         this.dateExam = dateExam;
@@ -49,11 +52,13 @@ public abstract class Examen {
                 ", coeff=" + coeff +
                 '}';
     }
-    public Float calculerMoyenne(ArrayList<Etudiant> lesPresents){
-        Float resultat = 0; 
-        for(int i = 0; i <= lesPresents.size; i++){
-            resultat = resultat + Cours.notes; //Ajouter notes dans les attributs (Soit dans Cours, soit dans Examen)
+
+    //TODO: reprogrammer cette méthode après avoir nettoyer notre project un peux.
+    /*public Float calculerMoyenne(ArrayList<Etudiant> lesPresents) {
+        Float resultat = 0;
+        for (int i = 0; i <= lesPresents.size(); i++) {
+            resultat = resultat + unCours.h; //Ajouter notes dans les attributs (Soit dans Cours, soit dans Examen)
         }
-        resultat = resultat/lesPresents.size;
-    }    
+        resultat = resultat / lesPresents.size;
+    }*/
 }

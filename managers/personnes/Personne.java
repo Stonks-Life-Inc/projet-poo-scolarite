@@ -1,20 +1,16 @@
 package managers.personnes;
 
 import managers.GestionGlobal;
-import utility.IFileManager;
 
-import java.io.BufferedReader;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.stream.Stream;
 
 
 public abstract class Personne extends GestionGlobal {
     private String prénom;
     private String mailUni;
 
-    public Personne(int id, String nom, ArrayList<GestionGlobal> gestions, String prénom, String mailUni) {
-        super(id, nom, gestions);
+    public Personne(int id, String nom, String prénom, String mailUni) {
+        super(id, nom);
         this.prénom = prénom;
         this.mailUni = mailUni;
     }
@@ -44,4 +40,28 @@ public abstract class Personne extends GestionGlobal {
     }
 
     //FileManager méthodes
+
+    public Personne(int id, String nom) {
+        super(id, nom);
+    }
+
+    @Override
+    public int getId() {
+        return super.getId();
+    }
+
+    @Override
+    public String getNom() {
+        return super.getNom();
+    }
+
+    @Override
+    public ArrayList<GestionGlobal> getGestions() {
+        return super.getGestions();
+    }
+
+    @Override
+    public void setGestions(ArrayList<GestionGlobal> gestions) {
+        super.setGestions(gestions);
+    }
 }

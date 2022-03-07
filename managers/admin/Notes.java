@@ -9,10 +9,8 @@ public class Notes extends GestionGlobal {
 
     private Examen examen;
 
-    public Notes(int id, String nom, FileManager fm, ArrayList<GestionGlobal> gestions,
-    Examen examen) {
-        super(id, nom, fm, gestions);
-
+    public Notes(int id, String nom, Examen examen) {
+        super(id, nom);
         this.examen = examen;
     }
 

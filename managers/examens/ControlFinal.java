@@ -3,7 +3,7 @@ package managers.examens;
 import java.time.Duration;
 import java.util.Date;
 
-public class ControlFinal extends Examen{
+public class ControlFinal extends Examen {
     private Date dateRattrapage;
 
     public ControlFinal(Date dateExam, Duration duree, Float coeff, Date dateRattrapage) {

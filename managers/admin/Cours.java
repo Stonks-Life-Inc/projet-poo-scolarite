@@ -1,17 +1,19 @@
 package managers.admin;
 
 import managers.GestionGlobal;
+import managers.examens.Examen;
 import managers.personnes.Enseignant;
+import managers.personnes.Etudiant;
 
 import java.util.ArrayList;
 
 public class Cours extends GestionGlobal {
-    private Enseignant enseignantRef;
     ArrayList<Etudiant> lesEtudiants = new ArrayList<Etudiant>();
     ArrayList<Examen> lesExamens = new ArrayList<Examen>();
+    private Enseignant enseignantRef;
 
-    public Cours(int id, String nom, ArrayList<GestionGlobal> gestions, Enseignant enseignantRef) {
-        super(id, nom, gestions);
+    public Cours(int id, String nom, Enseignant enseignantRef) {
+        super(id, nom);
         this.enseignantRef = enseignantRef;
     }
 

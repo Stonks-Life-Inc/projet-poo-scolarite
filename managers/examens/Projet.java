@@ -6,7 +6,7 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Projet extends Examen{
+public class Projet extends Examen {
     private ArrayList<Etudiant> etudiants;
 
     public Projet(Date dateExam, Duration duree, Float coeff, ArrayList<Etudiant> etudiants) {
