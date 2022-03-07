@@ -57,7 +57,7 @@ public class MainMenu {
                                 ajouterEtudiant();
                                 break;
                             case 2://Lister les étudiants
-                                tm.listerObject(tm.etudiants);
+                                tm.listerAlphabetObject(tm.etudiants);
                                 break;
                             default:
                                 break;
