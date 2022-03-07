@@ -1,7 +1,10 @@
 package utility;//package utility;
 
+import managers.admin.Cours;
+import managers.personnes.Enseignant;
 import managers.personnes.Etudiant;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,16 +20,26 @@ public class MainMenu {
         int choice;
         TableManager tm = new TableManager();
 
+        tm.etudiants.add(ajouterEtudiant());
+        tm.enseignants.add(ajouterEnseignant());
+        tm.cours.add(ajouterCours(tm)); //Nous avons besoin de la liste des enseignants pour ajouter un enseignant référant à notre cours
+
+        tm.writeObject(tm.etudiants, "./resources/csv/etudiant.csv");
+        tm.writeObject(tm.enseignants, "./resources/csv/enseignant.csv");
+        tm.writeObject(tm.cours, "./resources/csv/cours.csv");
+
         //Main menu loop
         try {
-            tm.etudiants = tm.readObject("Projet_POO/resources/csv/etudiant.csv");
+            tm.etudiants = tm.readObject("./resources/csv/etudiant.csv");
             System.out.println("etudiant.csv a été chargé.");
-            tm.absences = tm.readObject("Projet_POO/resources/csv/absence.csv");
+            tm.absences = tm.readObject("./resources/csv/absence.csv");
             System.out.println("absence.csv a été chargé.");
-            tm.cours = tm.readObject("Projet_POO/resources/csv/cours.csv");
+            tm.cours = tm.readObject("./resources/csv/cours.csv");
             System.out.println("cours.csv a été chargé.");
-            tm.notes = tm.readObject("Projet_POO/resources/csv/note.csv");
+            tm.notes = tm.readObject("./resources/csv/note.csv");
             System.out.println("note.csv a été chargé.");
+            tm.enseignants = tm.readObject("./resources/csv/enseignant.csv");
+            System.out.println("enseignant.csv a été chargé.");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -140,9 +153,11 @@ public class MainMenu {
 
     }
 
+//region Formulaire pour ajouter un obj manuellement
+
     static Etudiant ajouterEtudiant(){
 
-
+        System.out.println("Ajouter un nouvel étudiant");
         Scanner userIn = new Scanner(System.in);
         System.out.println("Id: ");
         int id = userIn.nextInt();
@@ -184,4 +199,41 @@ public class MainMenu {
         return new Etudiant(id,nom,prenom,mailUni,nss,ldn,ddn,ne,promo,mailPerso);
     }
 
+    static Enseignant ajouterEnseignant(){
+        System.out.println("Ajouter un nouvel enseignant");
+        Scanner userIn = new Scanner(System.in);
+
+        System.out.println("ID");
+        int id = userIn.nextInt();
+
+        System.out.println("Nom de l'enseignant");
+        String nom = userIn.next();
+
+        System.out.println("Prénom de l'enseignant");
+        String prenom = userIn.next();
+
+        System.out.println("Mail universitaire");
+        String mailUni = userIn.next();
+
+        return new Enseignant(id,nom,prenom,mailUni);
+    }
+
+    static Cours ajouterCours(TableManager tm){
+        System.out.println("Ajouter un nouveau cours");
+        Scanner userIn = new Scanner(System.in);
+
+        System.out.println("Identifiant du cours");
+        int id = userIn.nextInt();
+
+        System.out.println("Nom");
+        String nom = userIn.next();
+
+        System.out.println("Enseignant referant (par id)");
+        int enseignantRefId = userIn.nextInt();
+        Object enseignantRef = tm.enseignants.get(0);
+
+        return new Cours(id, nom, (Enseignant)enseignantRef);
+    }
+
+//Endregion
 }
