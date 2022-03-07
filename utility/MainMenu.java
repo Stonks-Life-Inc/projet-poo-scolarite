@@ -3,7 +3,9 @@ package utility;//package utility;
 import managers.personnes.Etudiant;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -23,17 +25,15 @@ public class MainMenu {
 
             switch (choice) {
 
-                case 0:
+                case 0://Quitter le menu (et donc le programme)
                     choice = -1;
                     break;
-
-
-                case 1:
+                case 1://Opération sur les étudiants
                     do {
                         System.out.println("Opérations sur les Etudiants :\n - 1 : Ajouter un nouvel étudiant\n - 2 : Lister les étudiants par ordre alphabétique\n - 3 : Lister les étudiants par promotion\n - 4 : Modifier un étudiant\n - 5 : Supprimer un étudiant\n - 0 : Retour\n");
                         choice = menuChoiceScanner.nextInt(); //Interger,long ... input
                         switch (choice) {
-                            case 0:
+                            case 0: //Quitter le ss-menu opération étudiant
                                 break;
                             case 1://Ajouter un nouvel étudiant
                                 System.out.println("Ajouter un étudiant :\n - 1 : Charger depuis un fichier\n" +
@@ -41,7 +41,7 @@ public class MainMenu {
                                         " - 0 : Retoure");
                                 choice = menuChoiceScanner.nextInt(); //Interger,long ... input
                                 switch (choice){
-                                    case 0:
+                                    case 0: //Quitter le ss-menu ajouter un étudiant
                                         choice = -1;
                                     case 1: //Chargement depuis un fichier
                                         try {
@@ -54,7 +54,7 @@ public class MainMenu {
                                         }
 
                                         break;
-                                    case 2://Ajout manuel
+                                    case 2://Ajout manuel (Appelle d'une fonction)
 
                                         break;
                                 }
@@ -142,5 +142,52 @@ public class MainMenu {
         } while (choice != -1);
 
     }
+    static Etudiant ajouterEtudiant(){
 
+
+        Scanner userIn = new Scanner(System.in);
+        Print("Id: ");
+        int id = userIn.nextInt();
+
+        Print("Nom");
+        String nom = userIn.nextLine();
+
+        Print("Prénom");
+        String prenom = userIn.nextLine();
+
+        Print("Numéro étudiant");
+        int ne = userIn.nextInt();
+
+        Print("Numéro de sécurité sociale");
+        String nss = userIn.nextLine();
+
+        Print("Lieu de naissance");
+        String ldn = userIn.nextLine();
+
+        Print("Date de naissance (format jj-mm-aaaa)");
+        String ddnString = userIn.nextLine();
+
+        Date ddn = new Date();
+        try {//La méthode SimpleDateFormat.parse peux générer une exception!
+            ddn = new SimpleDateFormat("dd/MM/yyyy").parse(ddnString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Print("Promotion");
+        String promo = userIn.nextLine();
+
+        Print("Mail perso");
+        String mailPerso = userIn.nextLine();
+
+        Print("Mail uni");
+        String mailUni = userIn.nextLine();
+
+        return new Etudiant(id,nom,prenom,mailUni,nss,ldn,ddn,ne,promo,mailPerso);
+    }
+
+    //Fonction pour accélérer l'écriture.
+    static void Print(String msg){
+        System.out.println(msg);
+    }
 }
