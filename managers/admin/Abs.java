@@ -23,4 +23,13 @@ public class Abs extends GestionGlobal {
         super(id, nom);
     }
 
+    @Override
+    public String toString() {
+        return "Abs{" + super.toString() +
+                "etudiant=" + etudiant +
+                ", cours=" + cours +
+                ", dateAbs=" + dateAbs +
+                ", motif='" + motif + '\'' +
+                '}';
+    }
 }

@@ -2,6 +2,8 @@ package managers.personnes;
 
 import managers.GestionGlobal;
 
+import java.util.ArrayList;
+
 //@Data
 public abstract class Personne extends GestionGlobal {
     //region déclaration des attributs
@@ -24,5 +26,13 @@ public abstract class Personne extends GestionGlobal {
         super(id, nom);
     }
 
-//endregion
+    @Override
+    public String toString() {
+        return "Personne{" + super.toString() +
+                "prénom='" + prénom + '\'' +
+                ", mailUni='" + mailUni + '\'' +
+                '}';
+    }
+
+    //endregion
 }

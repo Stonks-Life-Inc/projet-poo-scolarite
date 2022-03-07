@@ -1,14 +1,13 @@
 package utility;
 
-import managers.examens.*;
-import managers.admin.*;
-import managers.personnes.*;
-
+import managers.examens.ControlFinal;
+import managers.examens.Controle;
+import managers.examens.Projet;
+import managers.examens.TravailPratique;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Iterator;
 
 public class TableManager implements ITableManager {
 
@@ -28,15 +27,13 @@ public class TableManager implements ITableManager {
     @Override
     public void writeObject(ArrayList tab, String filename) throws IOException {
         // Serialization
-        try
-        {
-            //Saving of object in a file
+        try {
+            // Sauvegarde des objets dans un fichier
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
 
-            // Method for serialization of object
-            // Method for serialization of object
-            for (Object obj:
+            // Serialization des objets
+            for (Object obj :
                     tab) {
                 out.writeObject(obj);
             }
@@ -46,10 +43,7 @@ public class TableManager implements ITableManager {
 
             System.out.println("Object has been serialized");
 
-        }
-
-        catch(IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println("IOException is caught");
         }
     }
@@ -57,31 +51,24 @@ public class TableManager implements ITableManager {
     @Override
     public ArrayList<Object> readObject(String filename) throws IOException, ClassNotFoundException {
         // Deserialization
-        try
-        {
-            // Reading the object from a file
+        try {
+            // Lecture des objets depuis un fichier
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(file);
 
             ArrayList<Object> tabObj = new ArrayList<>();
 
-            // Method for deserialization of object
+            // Deseizalization des objets
             tabObj.add((Object) in.readObject());
 
             in.close();
             file.close();
 
             return tabObj;
-        }
-
-        catch(IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println("IOException is caught");
             System.out.println(ex);
-        }
-
-        catch(ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
         return null;
@@ -89,7 +76,7 @@ public class TableManager implements ITableManager {
 
     @Override
     public void listerObject(ArrayList tabObj) {
-        for (int i = 0; i <= tabObj.size()-1; i++) {
+        for (int i = 0; i <= tabObj.size() - 1; i++) {
             System.out.println(tabObj.get(i));
         }
     }
@@ -97,7 +84,7 @@ public class TableManager implements ITableManager {
     @Override
     public ArrayList<Object> listerAlphabetObject(ArrayList tabObj) {
         tabObj.sort((Comparator) tabObj);
-        for (int i = 0; i <= tabObj.size()-1; i++) {
+        for (int i = 0; i <= tabObj.size() - 1; i++) {
             System.out.println(tabObj.get(i));
         }
         return tabObj;

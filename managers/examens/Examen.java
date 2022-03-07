@@ -30,27 +30,28 @@ public abstract class Examen implements ITableManager {
 
     @Override
     public String toString() {
-        return "Examen{" +
-                "dateExam=" + dateExam +
+        return "Examen{" + super.toString() +
+                "etudiants=" + etudiants +
+                ", dateExam=" + dateExam +
                 ", duree=" + duree +
                 ", coeff=" + coeff +
+                ", unCours=" + unCours +
                 '}';
     }
 
-//region gestion des tableaux
+    //region gestion des tableaux
 
     @Override
     public void writeObject(ArrayList tab, String filename) throws IOException {
         // Serialization
-        try
-        {
+        try {
             //Saving of object in a file
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
 
             // Method for serialization of object
             // Method for serialization of object
-            for (Object obj:
+            for (Object obj :
                     tab) {
                 out.writeObject(obj);
             }
@@ -60,10 +61,7 @@ public abstract class Examen implements ITableManager {
 
             System.out.println("Object has been serialized");
 
-        }
-
-        catch(IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println("IOException is caught");
         }
     }
@@ -71,8 +69,7 @@ public abstract class Examen implements ITableManager {
     @Override
     public ArrayList<Object> readObject(String filename) throws IOException, ClassNotFoundException {
         // Deserialization
-        try
-        {
+        try {
             // Reading the object from a file
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(file);
@@ -86,16 +83,10 @@ public abstract class Examen implements ITableManager {
             file.close();
 
             return tabObj;
-        }
-
-        catch(IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println("IOException is caught");
             System.out.println(ex);
-        }
-
-        catch(ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException is caught");
         }
         return null;
@@ -103,7 +94,7 @@ public abstract class Examen implements ITableManager {
 
     @Override
     public void listerObject(ArrayList etudiants) {
-        for (int i = 0; i <= etudiants.size()-1; i++) {
+        for (int i = 0; i <= etudiants.size() - 1; i++) {
             System.out.println(etudiants.get(i));
         }
     }
@@ -111,7 +102,7 @@ public abstract class Examen implements ITableManager {
     @Override
     public ArrayList<Object> listerAlphabetObject(ArrayList tabObjets) {
         tabObjets.sort((Comparator) tabObjets);
-        for (int i = 0; i <= tabObjets.size()-1; i++) {
+        for (int i = 0; i <= tabObjets.size() - 1; i++) {
             System.out.println(tabObjets.get(i));
         }
         return tabObjets;
