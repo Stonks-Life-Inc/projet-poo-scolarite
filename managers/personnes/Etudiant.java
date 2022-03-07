@@ -2,20 +2,15 @@ package managers.personnes;
 
 import managers.admin.Cours;
 import managers.examens.Examen;
-import utility.IFileManager;
+import utility.ITableManager;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 
-public class Etudiant extends Personne implements IFileManager<Etudiant> {
-
+public class Etudiant extends Personne implements ITableManager {
+    //region déclaration des attributs
     ArrayList<Cours> lesCours = new ArrayList<Cours>();
     ArrayList<Examen> lesExamens = new ArrayList<Examen>();
     private String nss; //Numéro SS
@@ -24,7 +19,11 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
     private int ne; //Numéro étudiant
     private String promo; //Promo
     private String mailPerso;
+//endregion
 
+    //===============================================================
+    // Methods
+    //===============================================================
     public Etudiant(int id, String nom, String prénom, String mailUni, String nss, String ldn, Date ddn, int ne, String promo, String mailPerso) {
         super(id, nom, prénom, mailUni);
         this.nss = nss;
@@ -32,46 +31,6 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
         this.ddn = ddn;
         this.ne = ne;
         this.promo = promo;
-        this.mailPerso = mailPerso;
-    }
-
-    public String getNss() {
-        return nss;
-    }
-
-    public void setNss(String nss) {
-        this.nss = nss;
-    }
-
-    public String getLdn() {
-        return ldn;
-    }
-
-    public void setLdn(String ldn) {
-        this.ldn = ldn;
-    }
-
-    public Date getDdn() {
-        return ddn;
-    }
-
-    public void setDdn(Date ddn) {
-        this.ddn = ddn;
-    }
-
-    public String getPromo() {
-        return promo;
-    }
-
-    public void setPromo(String promo) {
-        this.promo = promo;
-    }
-
-    public String getMailPerso() {
-        return mailPerso;
-    }
-
-    public void setMailPerso(String mailPerso) {
         this.mailPerso = mailPerso;
     }
 
@@ -86,66 +45,105 @@ public class Etudiant extends Personne implements IFileManager<Etudiant> {
                 '}';
     }
 
-    //File Manager method
+//region gestion des tableaux
 
     @Override
-    public ArrayList<Etudiant> lireFichier(String filename) {
-        ArrayList<Etudiant> etudiants = new ArrayList<>();
-        Path pathToFile = Paths.get(filename);
-        String[] attr;
-        Etudiant etudiant;
-        String line;
+    public void writeObject(ArrayList tab, String filename) throws IOException {
+        // Serialization
+        try
+        {
+            //Saving of object in a file
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream out = new ObjectOutputStream(file);
 
-        //We init a new BufferedReader in this try catch clause.
-        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
+            // Method for serialization of object
+            // Method for serialization of object
+            for (Object obj:
+                    tab) {
+                out.writeObject(obj);
+            }
 
-            //We loop through each line (item) in our table
-            do {
-                //We read all lines at once
-                line = br.readLine();
+            out.close();
+            file.close();
 
-                //We split each value by , (because our CSV is split thanks to ,)
-                attr = line.split(",");
+            System.out.println("Object has been serialized");
 
-                //We call our ceateClass method to reconstruct an object from this String[]
-                etudiant = createClass(attr);
+        }
 
-                //We add our newly created obj into our table
-                etudiants.add(etudiant);
-
-
-            } while (line != null);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            return etudiants;
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
         }
     }
 
     @Override
-    public void ecritureFichier(BufferedReader currentBuffer, ArrayList<Etudiant> gestions) {
+    public ArrayList<Object> readObject(String filename) throws IOException, ClassNotFoundException {
+        // Deserialization
+        try
+        {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream in = new ObjectInputStream(file);
 
+            ArrayList<Object> tabObj = new ArrayList<>();
+
+            // Method for deserialization of object
+            tabObj.add((Object) in.readObject());
+
+            in.close();
+            file.close();
+
+            return tabObj;
+        }
+
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+            System.out.println(ex);
+        }
+
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+        return null;
     }
 
     @Override
-    public Etudiant createClass(String[] metadata) {
-        int id = Integer.parseInt(metadata[0]);
-        int numEtud = Integer.parseInt(metadata[1]);
-        String numSS = metadata[2];
-        String nom = metadata[3];
-        String prenom = metadata[4];
-        String ldn = metadata[5];
-        Date ddn = null;
-        try {
-            ddn = new SimpleDateFormat("dd/MM/yyy").parse(metadata[6]);
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public void listerObject(ArrayList etudiants) {
+        for (int i = 0; i <= etudiants.size()-1; i++) {
+            System.out.println(etudiants.get(i));
         }
-        String promo = metadata[7];
-        String mailPerso = metadata[8];
-        String mailUni = metadata[9];
-
-        return new Etudiant(id, nom, prenom, mailUni, numSS, ldn, ddn, numEtud, promo, mailPerso);
     }
+
+    @Override
+    public ArrayList<Object> listerAlphabetObject(ArrayList tabObjets) {
+        tabObjets.sort((Comparator) tabObjets);
+        for (int i = 0; i <= tabObjets.size()-1; i++) {
+            System.out.println(tabObjets.get(i));
+        }
+        return tabObjets;
+    }
+
+    @Override
+    public ArrayList<Object> ajouter(Object obj, ArrayList<Object> tabObj) {
+        tabObj.add(obj);
+        return tabObj;
+    }
+
+    @Override
+    public ArrayList<Object> modifier(Object obj, ArrayList<Object> tabObj) {
+        tabObj.remove(obj);
+        tabObj.add(obj);
+
+        return tabObj;
+    }
+
+    @Override
+    public ArrayList<Object> supprimer(Object obj, ArrayList<Object> tabObj) {
+        tabObj.remove(obj);
+        return tabObj;
+    }
+
+//endregion
 }
