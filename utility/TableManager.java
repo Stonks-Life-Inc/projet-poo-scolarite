@@ -28,12 +28,11 @@ public class TableManager implements ITableManager {
     public void writeObject(ArrayList tab, String filename) throws IOException {
         // Serialization
         try {
-            //Saving of object in a file
+            // Sauvegarde des objets dans un fichier
             FileOutputStream file = new FileOutputStream(filename);
             ObjectOutputStream out = new ObjectOutputStream(file);
 
-            // Method for serialization of object
-            // Method for serialization of object
+            // Serialization des objets
             for (Object obj :
                     tab) {
                 out.writeObject(obj);
@@ -53,13 +52,13 @@ public class TableManager implements ITableManager {
     public ArrayList<Object> readObject(String filename) throws IOException, ClassNotFoundException {
         // Deserialization
         try {
-            // Reading the object from a file
+            // Lecture des objets depuis un fichier
             FileInputStream file = new FileInputStream(filename);
             ObjectInputStream in = new ObjectInputStream(file);
 
             ArrayList<Object> tabObj = new ArrayList<>();
 
-            // Method for deserialization of object
+            // Deseizalization des objets
             tabObj.add((Object) in.readObject());
 
             in.close();

@@ -1,5 +1,7 @@
 package utility;
 
+import managers.personnes.Etudiant;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;

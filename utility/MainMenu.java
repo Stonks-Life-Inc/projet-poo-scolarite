@@ -26,7 +26,7 @@ public class MainMenu {
         tm.writeObject(tm.enseignants, "./resources/csv/enseignant.csv");
         tm.writeObject(tm.cours, "./resources/csv/cours.csv");
 
-        //Main menu loop
+        //Chargement de nos données dans les fichiers dans le programme à l'ouverture
         try {
             tm.etudiants = tm.readObject("./resources/csv/etudiant.csv");
             System.out.println("etudiant.csv a été chargé.");
@@ -44,6 +44,8 @@ public class MainMenu {
             e.printStackTrace();
         }
 
+        //Menu principal
+        //TODO: finir de coder le menu (en y ajoutant l'appel aux méthodes)
         do {
 
             System.out.println("Quel est votre choix ?\n - 1 : Etudiants\n - 2 : Cours\n - 3 : Inscriptions\n - 4 : Notes\n - 5 : Absences\n - 0 : Quitter\n");
@@ -171,7 +173,7 @@ public class MainMenu {
     }
 
 //region Formulaire pour ajouter un obj manuellement
-
+    //TODO: Créer un formulaire pour chaque classe métier!
     static Etudiant ajouterEtudiant() {
 
         System.out.println("Ajouter un nouvel étudiant");

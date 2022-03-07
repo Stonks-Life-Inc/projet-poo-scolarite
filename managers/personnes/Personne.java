@@ -2,6 +2,8 @@ package managers.personnes;
 
 import managers.GestionGlobal;
 
+import java.util.ArrayList;
+
 //@Data
 public abstract class Personne extends GestionGlobal {
     //region déclaration des attributs
