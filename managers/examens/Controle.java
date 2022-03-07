@@ -17,6 +17,8 @@ public class Controle extends Examen {
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Controle{" + super.toString() +
+                "etudiants=" + etudiants +
+                '}';
     }
 }

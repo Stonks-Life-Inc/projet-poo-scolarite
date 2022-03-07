@@ -4,12 +4,9 @@ import managers.admin.Cours;
 import managers.personnes.Enseignant;
 import managers.personnes.Etudiant;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -46,9 +43,9 @@ public class MainMenu {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-    
+
         do {
-            
+
             System.out.println("Quel est votre choix ?\n - 1 : Etudiants\n - 2 : Cours\n - 3 : Inscriptions\n - 4 : Notes\n - 5 : Absences\n - 0 : Quitter\n");
             //On scan le choix de l'utilisateur
             choice = menuChoiceScanner.nextInt(); //Interger,long ... input
@@ -70,7 +67,7 @@ public class MainMenu {
                                         " - 2 : Ajouter un élève manuellement" +
                                         " - 0 : Retoure");
                                 choice = menuChoiceScanner.nextInt(); //Interger,long ... input
-                                switch (choice){
+                                switch (choice) {
                                     case 0: //Quitter le ss-menu ajouter un étudiant
                                         choice = -1;
                                     case 1: //Chargement depuis un fichier
@@ -172,53 +169,10 @@ public class MainMenu {
         } while (choice != -1);
 
     }
-    static Etudiant ajouterEtudiant(){
-
-
-        Scanner userIn = new Scanner(System.in);
-        Print("Id: ");
-        int id = userIn.nextInt();
-
-        Print("Nom");
-        String nom = userIn.nextLine();
-
-        Print("Prénom");
-        String prenom = userIn.nextLine();
-
-        Print("Numéro étudiant");
-        int ne = userIn.nextInt();
-
-        Print("Numéro de sécurité sociale");
-        String nss = userIn.nextLine();
-
-        Print("Lieu de naissance");
-        String ldn = userIn.nextLine();
-
-        Print("Date de naissance (format jj-mm-aaaa)");
-        String ddnString = userIn.nextLine();
-
-        Date ddn = new Date();
-        try {//La méthode SimpleDateFormat.parse peux générer une exception!
-            ddn = new SimpleDateFormat("dd/MM/yyyy").parse(ddnString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        Print("Promotion");
-        String promo = userIn.nextLine();
-
-        Print("Mail perso");
-        String mailPerso = userIn.nextLine();
-
-        Print("Mail uni");
-        String mailUni = userIn.nextLine();
-
-        return new Etudiant(id,nom,prenom,mailUni,nss,ldn,ddn,ne,promo,mailPerso);
-    }
 
 //region Formulaire pour ajouter un obj manuellement
 
-    static Etudiant ajouterEtudiant(){
+    static Etudiant ajouterEtudiant() {
 
         System.out.println("Ajouter un nouvel étudiant");
         Scanner userIn = new Scanner(System.in);
@@ -259,10 +213,10 @@ public class MainMenu {
         System.out.println("Mail uni");
         String mailUni = userIn.nextLine();
 
-        return new Etudiant(id,nom,prenom,mailUni,nss,ldn,ddn,ne,promo,mailPerso);
+        return new Etudiant(id, nom, prenom, mailUni, nss, ldn, ddn, ne, promo, mailPerso);
     }
 
-    static Enseignant ajouterEnseignant(){
+    static Enseignant ajouterEnseignant() {
         System.out.println("Ajouter un nouvel enseignant");
         Scanner userIn = new Scanner(System.in);
 
@@ -278,10 +232,10 @@ public class MainMenu {
         System.out.println("Mail universitaire");
         String mailUni = userIn.next();
 
-        return new Enseignant(id,nom,prenom,mailUni);
+        return new Enseignant(id, nom, prenom, mailUni);
     }
 
-    static Cours ajouterCours(TableManager tm){
+    static Cours ajouterCours(TableManager tm) {
         System.out.println("Ajouter un nouveau cours");
         Scanner userIn = new Scanner(System.in);
 
@@ -295,12 +249,12 @@ public class MainMenu {
         int enseignantRefId = userIn.nextInt();
         Object enseignantRef = tm.enseignants.get(0);
 
-        return new Cours(id, nom, (Enseignant)enseignantRef);
+        return new Cours(id, nom, (Enseignant) enseignantRef);
     }
 
-//Endregion
+    //Endregion
     //Fonction pour accélérer l'écriture.
-    static void Print(String msg){
+    static void Print(String msg) {
         System.out.println(msg);
     }
 }

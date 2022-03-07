@@ -25,7 +25,9 @@ public class Cours extends GestionGlobal {
     @Override
     public String toString() {
         return "Cours{" + super.toString() +
-                "enseignantRef=" + enseignantRef +
+                "lesEtudiants=" + lesEtudiants +
+                ", lesExamens=" + lesExamens +
+                ", enseignantRef=" + enseignantRef +
                 '}';
     }
 }

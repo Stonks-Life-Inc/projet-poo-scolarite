@@ -15,10 +15,10 @@ public class Notes extends GestionGlobal {
         this.examen = examen;
     }
 
-    public String $toString() {
-        return "Notes{" +
+    @Override
+    public String toString() {
+        return "Notes{" + super.toString() +
                 "examen=" + examen +
                 '}';
     }
-
 }

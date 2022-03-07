@@ -24,5 +24,13 @@ public abstract class Personne extends GestionGlobal {
         super(id, nom);
     }
 
-//endregion
+    @Override
+    public String toString() {
+        return "Personne{" + super.toString() +
+                "prénom='" + prénom + '\'' +
+                ", mailUni='" + mailUni + '\'' +
+                '}';
+    }
+
+    //endregion
 }
