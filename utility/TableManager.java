@@ -13,7 +13,7 @@ import java.util.Comparator;
 
 public class TableManager implements ITableManager {
 
-    ArrayList<Etudiant> etudiants = new ArrayList<>();
+    ArrayList<Object> etudiants = new ArrayList<Object>();
     ArrayList<Enseignant> enseignants = new ArrayList<>();
 
     ArrayList<TravailPratique> tps = new ArrayList<>();
@@ -21,50 +21,7 @@ public class TableManager implements ITableManager {
     ArrayList<ControlFinal> cfs = new ArrayList<>();
     ArrayList<Controle> controles = new ArrayList<>();
 
-//region gestion du tableau Etudiant
-
-//    @Override
-//    public void ecritureFichier(String filePath, ArrayList etudiants) {
-//
-//    }
-//
-//    @Override
-//    public ArrayList<Etudiant> lectureFichier(String filePath) {
-//
-//        Path pathToFile = Paths.get(filePath);
-//        String[] attr;
-//
-//        Etudiant etudiant;
-//
-//
-//        String line;
-//
-//        //We init a new BufferedReader in this try catch clause.
-//        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
-//
-//            //We loop through each line (item) in our table
-//            do {
-//                //We read all lines at once
-//                line = br.readLine();
-//
-//                //We split each value by , (because our CSV is split thanks to ,)
-//                attr = line.split(",");
-//
-//                //We call our ceateClass method to reconstruct an object from this String[]
-//                etudiant = createClass(attr);
-//
-//                //We add our newly created obj into our table
-//                etudiants.add(etudiant);
-//
-//
-//            } while (line != null);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } finally {
-//            return etudiants;
-//        }
-//    }
+//region gestion des tableaux
 
     @Override
     public void writeObject(ArrayList tab, String filename) throws IOException {
@@ -118,6 +75,7 @@ public class TableManager implements ITableManager {
         catch(IOException ex)
         {
             System.out.println("IOException is caught");
+            System.out.println(ex);
         }
 
         catch(ClassNotFoundException ex)
@@ -128,19 +86,19 @@ public class TableManager implements ITableManager {
     }
 
     @Override
-    public void listerObject(ArrayList etudiants) {
-        for (int i = 0; i <= etudiants.size(); i++) {
-            System.out.println(etudiants.get(i));
+    public void listerObject(ArrayList tabObj) {
+        for (int i = 0; i <= tabObj.size()-1; i++) {
+            System.out.println(tabObj.get(i));
         }
     }
 
     @Override
-    public ArrayList<Etudiant> listerAlphabetObject(ArrayList etudiants) {
-        etudiants.sort((Comparator) etudiants);
-        for (int i = 0; i <= etudiants.size(); i++) {
-            System.out.println(etudiants.get(i));
+    public ArrayList<Object> listerAlphabetObject(ArrayList tabObj) {
+        tabObj.sort((Comparator) tabObj);
+        for (int i = 0; i <= tabObj.size()-1; i++) {
+            System.out.println(tabObj.get(i));
         }
-        return etudiants;
+        return tabObj;
     }
 
     @Override

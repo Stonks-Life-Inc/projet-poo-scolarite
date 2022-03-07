@@ -1,6 +1,8 @@
 package managers;
 
-public abstract class GestionGlobal {
+import java.io.Serializable;
+
+public abstract class GestionGlobal implements Serializable {
     //region déclaration des attributs
     protected final int id;
     protected final String nom;
