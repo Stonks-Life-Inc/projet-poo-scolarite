@@ -8,11 +8,12 @@ import managers.personnes.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 public class TableManager implements ITableManager {
 
     ArrayList<Object> etudiants = new ArrayList<Object>();
-    ArrayList<Enseignant> enseignants = new ArrayList<>();
+    ArrayList<Object> enseignants = new ArrayList<>();
 
     ArrayList<TravailPratique> tps = new ArrayList<>();
     ArrayList<Projet> projets = new ArrayList<>();
