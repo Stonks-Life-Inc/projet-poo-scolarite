@@ -1,41 +1,25 @@
-package managers.examens;
+package utility;
 
-import managers.admin.Cours;
+import managers.examens.ControlFinal;
+import managers.examens.Controle;
+import managers.examens.Projet;
+import managers.examens.TravailPratique;
+import managers.personnes.Enseignant;
 import managers.personnes.Etudiant;
-import utility.ITableManager;
 
 import java.io.*;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 
-public abstract class Examen implements ITableManager {
-    //region déclaration des attributs
-    ArrayList<Etudiant> etudiants = new ArrayList<Etudiant>();
-    private Date dateExam;
-    private Duration duree;
-    private Float coeff;
-    private Cours unCours;
-//endregion
+public class TableManager implements ITableManager {
 
-    //===============================================================
-    // Methods
-    //===============================================================
-    public Examen(Date dateExam, Duration duree, Float coeff) {
-        this.dateExam = dateExam;
-        this.duree = duree;
-        this.coeff = coeff;
-    }
+    ArrayList<Object> etudiants = new ArrayList<Object>();
+    ArrayList<Enseignant> enseignants = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "Examen{" +
-                "dateExam=" + dateExam +
-                ", duree=" + duree +
-                ", coeff=" + coeff +
-                '}';
-    }
+    ArrayList<TravailPratique> tps = new ArrayList<>();
+    ArrayList<Projet> projets = new ArrayList<>();
+    ArrayList<ControlFinal> cfs = new ArrayList<>();
+    ArrayList<Controle> controles = new ArrayList<>();
 
 //region gestion des tableaux
 
@@ -102,19 +86,19 @@ public abstract class Examen implements ITableManager {
     }
 
     @Override
-    public void listerObject(ArrayList etudiants) {
-        for (int i = 0; i <= etudiants.size()-1; i++) {
-            System.out.println(etudiants.get(i));
+    public void listerObject(ArrayList tabObj) {
+        for (int i = 0; i <= tabObj.size()-1; i++) {
+            System.out.println(tabObj.get(i));
         }
     }
 
     @Override
-    public ArrayList<Object> listerAlphabetObject(ArrayList tabObjets) {
-        tabObjets.sort((Comparator) tabObjets);
-        for (int i = 0; i <= tabObjets.size()-1; i++) {
-            System.out.println(tabObjets.get(i));
+    public ArrayList<Object> listerAlphabetObject(ArrayList tabObj) {
+        tabObj.sort((Comparator) tabObj);
+        for (int i = 0; i <= tabObj.size()-1; i++) {
+            System.out.println(tabObj.get(i));
         }
-        return tabObjets;
+        return tabObj;
     }
 
     @Override
