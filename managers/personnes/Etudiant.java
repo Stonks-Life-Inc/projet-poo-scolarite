@@ -37,6 +37,7 @@ public class Etudiant extends Personne implements ITableManager {
     @Override
     public String toString() {
         return super.toString() +
+                "ne='" + ne + '\'' +
                 "nss='" + nss + '\'' +
                 ", pob='" + ldn + '\'' +
                 ", ddn=" + ddn +
