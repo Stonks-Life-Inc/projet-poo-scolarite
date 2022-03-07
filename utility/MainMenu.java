@@ -10,9 +10,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+// Changement des chemins vers les fichiers CSV pour des chemins relatifs.
+// Ajout des quelques fonctionnalitées aux classes métier disponible.
+// Il faudrait réimplémenter la classe enseignant d'une meilleure manière + finir de coder les fonctions ajouter<ClasseMetier> pour pouvoir finir le menu.
+// Pour les autres méthodes, il faudrait malheureusement re-écrire la plus grande partie du projet.
 public class MainMenu {
     private static Scanner menuChoiceScanner = new Scanner(System.in);
-
+    //WARNING: la classe Enseignant n'est pas bien implémentée. TODO: la ré-écrire/ la ré-implémenter avec les autres méthodes!
     //TODO: améliorer le menu pour que l'on puisse rajouter des choix dans des choix plus facilement en liant la fonction du choix à son menu parent. (FileMenu system)
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         int choice;
@@ -74,7 +78,7 @@ public class MainMenu {
                                         choice = -1;
                                     case 1: //Chargement depuis un fichier
                                         try {
-                                            tm.etudiants = tm.readObject("C:/Users/clem6/OneDrive/Documents/GitHub/university-projet-poo-scolarite/resources/csv/etudiant.csv");
+                                            tm.etudiants = tm.readObject("./resources/csv/etudiant.csv");
                                         } catch (IOException e) {
 
                                             e.printStackTrace();
@@ -84,12 +88,19 @@ public class MainMenu {
 
                                         break;
                                     case 2://Ajout manuel (Appelle d'une fonction)
-
+                                        tm.etudiants.add(ajouterEtudiant());
                                         break;
                                 }
                                 break;
                             case 2://Lister les étudiants
                                 tm.listerAlphabetObject(tm.etudiants);
+                                break;
+                            case 4://Modifier un étudiant
+                                tm.modifier(ajouterEtudiant(), tm.etudiants);
+                                break;
+                            case 5:
+                                System.out.println("Supprimer un étudiant");
+                                tm.supprimer(ajouterEtudiant(),tm.etudiants);
                                 break;
                             default:
                                 break;
@@ -105,7 +116,39 @@ public class MainMenu {
                         switch (choice) {
                             case 0:
                                 break;
+                            case 1:
+                                System.out.println("Ajouter un cours :\n - 1 : Charger depuis un fichier\n" +
+                                        " - 2 : Ajouter un cours manuellement" +
+                                        " - 0 : Retoure");
+                                choice = menuChoiceScanner.nextInt(); //Interger,long ... input
+                                switch (choice) {
+                                    case 0: //Quitter le ss-menu ajouter un cours
+                                        choice = -1;
+                                    case 1: //Chargement depuis un fichier
+                                        try {
+                                            tm.cours = tm.readObject("./resources/csv/cours.csv");
+                                        } catch (IOException e) {
 
+                                            e.printStackTrace();
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        break;
+                                    case 2://Ajout manuel (Appelle d'une fonction)
+                                        tm.cours.add(ajouterCours(tm));
+                                        break;
+                                }
+                                break;
+                            case 2:
+                                tm.listerObject(tm.cours);
+                                break;
+                            case 3:
+                                tm.modifier(ajouterCours(tm),tm.cours);
+                                break;
+                            case 4:
+                                tm.supprimer(ajouterCours(tm),tm.cours);
+                                break;
                             default:
                                 break;
                         }
@@ -113,6 +156,7 @@ public class MainMenu {
                     } while (choice != 0);
                     break;
 
+                    //TODO: continuer d'ajouter les autres fonctions pour les méthodes
                 case 3:
                     do {
                         System.out.println("Opérations sur les inscriptions :\n - 1 : Ajouter un étudiant à un cours\n - 2 : Supprimer une inscription\n - 3 : Lister les étudiants d'un cours\n - 4 : Lister les cours d'un étudiants");
@@ -207,13 +251,13 @@ public class MainMenu {
         }
 
         System.out.println("Promotion");
-        String promo = userIn.nextLine();
+        String promo = userIn.next();
 
         System.out.println("Mail perso");
-        String mailPerso = userIn.nextLine();
+        String mailPerso = userIn.next();
 
         System.out.println("Mail uni");
-        String mailUni = userIn.nextLine();
+        String mailUni = userIn.next();
 
         return new Etudiant(id, nom, prenom, mailUni, nss, ldn, ddn, ne, promo, mailPerso);
     }
